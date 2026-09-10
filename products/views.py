@@ -12,6 +12,6 @@ def home(request):
 
     return render(
         request,
-        "products/home.html",
+        "templates/products/home.html",
         {"products": products},
     )
