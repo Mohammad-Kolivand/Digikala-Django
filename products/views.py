@@ -6,12 +6,12 @@ def home(request):
     products = (
         Product.objects
         .filter(is_active=True)
-        .select_related("store")
-        .order_by("-created_at")
+        .select_related('store')
+        .order_by('-created_at')
     )
 
     return render(
         request,
-        "templates/products/home.html",
+        "products/home.html",
         {"products": products},
     )
