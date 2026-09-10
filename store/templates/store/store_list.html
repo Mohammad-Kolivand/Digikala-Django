@@ -15,7 +15,12 @@
 
         {% for store in stores %}
             <article>
-                <h2>{{ store.name }}</h2>
+                <h2>
+                    <a href="{% url 'store-detail' store.id %}">
+                        {{ store.name }}
+                    </a>
+                </h2>
+
                 <p>{{ store.description }}</p>
             </article>
         {% empty %}
