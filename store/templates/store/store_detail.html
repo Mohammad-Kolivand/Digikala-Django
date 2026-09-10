@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ store.name }}</title>
+</head>
+<body>
+    <header>
+        <a href="/">Digikala</a>
+        <a href="{% url 'store-list' %}">All Stores</a>
+    </header>
+
+    <main>
+        <h1>{{ store.name }}</h1>
+        <p>{{ store.description }}</p>
+
+        <h2>Products</h2>
+
+        {% for product in products %}
+            <article>
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: {{ product.price }}</p>
+                <p>Stock: {{ product.stock }}</p>
+            </article>
+        {% empty %}
+            <p>No products found in this store.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>
