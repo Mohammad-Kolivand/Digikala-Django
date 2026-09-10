@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 from products.views import home
-from store.views import store_list
+from store.views import store_list, store_detail
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('stores/', store_list, name='store'),
+    path("stores/<int:store_id>/", store_detail, name="store_detail")
 ]
