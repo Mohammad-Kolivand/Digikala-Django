@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Stores</title>
+</head>
+<body>
+    <header>
+        <a href="/">Digikala</a>
+    </header>
+
+    <main>
+        <h1>All Stores</h1>
+
+        {% for store in stores %}
+            <article>
+                <h2>{{ store.name }}</h2>
+                <p>{{ store.description }}</p>
+            </article>
+        {% empty %}
+            <p>No stores found.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>
