@@ -23,7 +23,7 @@ from accounts.views import login_view, signup_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('signup/', signup_view, name='singup')
+    path('signup/', signup_view, name='singu'),
     path('login/', login_view, name='login'),
     path("stores/", include("store.urls")),
 ]
