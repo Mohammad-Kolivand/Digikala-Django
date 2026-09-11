@@ -23,6 +23,5 @@ from store.views import store_list, store_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('stores/', store_list, name='store'),
-    path("stores/<int:store_id>/", store_detail, name="store_detail")
+    path("stores/", include("store.urls")),
 ]
