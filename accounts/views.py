@@ -4,8 +4,8 @@ from django.shortcuts import redirect, render
 
 def login_view(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        username = request.POST.get("username", "").strip()
+        password = request.POST.get("password", "")
 
         user = authenticate(
             request,
@@ -20,7 +20,10 @@ def login_view(request):
         return render(
             request,
             "accounts/login.html",
-            {"error": "Invalid username or password."},
+            {
+                "error": "نام کاربری یا رمز عبور اشتباه است.",
+                "username": username,
+            },
         )
 
     return render(request, "accounts/login.html")
