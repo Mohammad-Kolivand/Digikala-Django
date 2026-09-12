@@ -23,7 +23,7 @@ def login_view(request):
             request,
             "accounts/login.html",
             {
-                "error": "نام کاربری یا رمز عبور اشتباه است.",
+                "error": "Invalid username or password.",
                 "username": username,
             },
         )
@@ -33,24 +33,36 @@ def login_view(request):
 
 def signup_view(request):
     if request.method == "POST":
+
         form = UserCreationForm(request.POST)
+
+        phone = request.POST.get("phone", "").strip()
         role = request.POST.get("role")
 
         if form.is_valid():
+
             if role not in {"customer", "seller"}:
                 form.add_error(
                     None,
-                    "لطفاً نوع حساب را انتخاب کنید.",
+                    "Please select a valid account type."
                 )
+
             else:
                 user = form.save()
 
                 if role == "customer":
-                    CustomerProfile.objects.create(user=user)
+                    CustomerProfile.objects.create(
+                        user=user,
+                        phone=phone
+                    )
                 else:
-                    SellerProfile.objects.create(user=user)
+                    SellerProfile.objects.create(
+                        user=user,
+                        phone=phone
+                    )
 
                 return redirect("login")
+
     else:
         form = UserCreationForm()
 
