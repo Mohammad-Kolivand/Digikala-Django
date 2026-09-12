@@ -1,43 +1,54 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ثبت‌نام</title>
+    <title>Sign Up</title>
 </head>
+
 <body>
-    <main>
-        <h1>ساخت حساب کاربری</h1>
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
+    <h1>Create an account</h1>
 
-            <div>
-                {{ form.username.label_tag }}
-                {{ form.username }}
-                {{ form.username.errors }}
-            </div>
+    <form method="POST">
 
-            <div>
-                {{ form.password1.label_tag }}
-                {{ form.password1 }}
-                {{ form.password1.errors }}
-            </div>
+        {% csrf_token %}
 
-            <div>
-                {{ form.password2.label_tag }}
-                {{ form.password2 }}
-                {{ form.password2.errors }}
-            </div>
-
-            <button type="submit">ثبت‌نام</button>
-        </form>
+        {{ form.as_p }}
 
         <p>
-            قبلاً ثبت‌نام کرده‌اید؟
-            <a href="{% url 'login' %}">وارد شوید</a>
+            <label for="phone">Phone:</label>
+            <input
+                type="text"
+                name="phone"
+                id="phone"
+                maxlength="15"
+            >
         </p>
-    </main>
+
+        <p>
+            <label for="role">Account type:</label>
+
+            <select name="role" id="role">
+                <option value="">Select account type</option>
+                <option value="customer">Customer</option>
+                <option value="seller">Seller</option>
+            </select>
+        </p>
+
+        {% if form.non_field_errors %}
+            <div>
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <button type="submit">Sign Up</button>
+
+    </form>
+
+    <p>
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+
 </body>
 </html>
